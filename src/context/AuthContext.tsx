@@ -28,7 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       api
         .get<{ data: User }>("/users/me")
         .then((res) => {
-          const user = res.data.data ?? (res.data as unknown as User);
+          const user = res.data.data;
           if (user.role === "admin") {
             setAdmin(user);
           } else {
@@ -48,18 +48,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   async function login(email: string, password: string) {
-    const res = await api.post<{ data: { token: string; user: User } }>(
-      "/auth/login",
-      { email, password }
-    );
-    const { token: newToken, user } = res.data.data;
+    const res = await api.post<{
+      data: { accessToken: string; refreshToken: string; user: User };
+    }>("/auth/login", { email, password });
+    const { accessToken, user } = res.data.data;
 
     if (user.role !== "admin") {
       throw new Error("Access denied. Admin accounts only.");
     }
 
-    Cookies.set("admin_token", newToken, { expires: 7 });
-    setToken(newToken);
+    Cookies.set("admin_token", accessToken, { expires: 7 });
+    setToken(accessToken);
     setAdmin(user);
   }
 
