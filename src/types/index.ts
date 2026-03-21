@@ -26,29 +26,23 @@ export interface Category {
 
 // ─── Product ─────────────────────────────────────────────────────────────────
 
-export interface Specification {
-  key: string;
-  value: string;
-}
-
 export interface Product {
   _id: string;
-  name: string;
+  title: string;
   description: string;
-  brand: string;
+  brand?: string;
   price: number;
-  discountPercentage: number;
-  finalPrice: number;
+  discount: number;         // 0-100 percentage
   stock: number;
   category: string | Category;
   images: string[];
   tags: string[];
-  specifications: Specification[];
+  specifications: Record<string, string>; // Map<string,string> serialised
   rating: number;
   reviewCount: number;
   sold: number;
-  featured: boolean;
-  isActive: boolean;
+  isFeatured: boolean;
+  createdBy?: string | User;
   createdAt: string;
   updatedAt: string;
 }
