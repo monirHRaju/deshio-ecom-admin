@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm, useFieldArray, Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import api from "@/lib/api";
 import type { Category, ApiResponse } from "@/types";
 import { PlusIcon, TrashBinIcon, BoltIcon } from "@/icons";
+import ImageUpload from "@/components/ui/ImageUpload";
 
 // ─── schema ──────────────────────────────────────────────────────────────────
 
@@ -318,55 +319,47 @@ export default function ProductForm({ defaultValues, onSubmit, submitLabel }: Pr
           {/* Images card */}
           <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-gray-800 dark:text-white/90">Images</h3>
+              <h3 className="font-semibold text-gray-800 dark:text-white/90">
+                Images
+                <span className="ml-1.5 text-xs font-normal text-gray-400">
+                  ({imageFields.length})
+                </span>
+              </h3>
               <button
                 type="button"
                 onClick={() => appendImage({ url: "" })}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
               >
-                <PlusIcon className="w-3.5 h-3.5" /> Add URL
+                <PlusIcon className="w-3.5 h-3.5" /> Add Image
               </button>
             </div>
 
             {errors.images && (
-              <p className="text-xs text-red-500">{(errors.images as { message?: string })?.message ?? "Check image URLs"}</p>
+              <p className="text-xs text-red-500">
+                {(errors.images as { message?: string })?.message ?? "Add at least one image"}
+              </p>
             )}
 
-            {imageFields.map((field, i) => {
-              const url = watch(`images.${i}.url`);
-              return (
-                <div key={field.id} className="space-y-2">
-                  {url && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={url}
-                      alt=""
-                      onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-                      className="w-full h-32 object-cover rounded-lg border border-gray-100 dark:border-gray-700"
-                    />
-                  )}
-                  <div className="flex gap-2">
-                    <input
-                      {...register(`images.${i}.url`)}
-                      placeholder="https://…"
-                      className="input-field flex-1 text-xs"
-                    />
-                    {imageFields.length > 1 && (
-                      <button
-                        type="button"
-                        onClick={() => removeImage(i)}
-                        className="p-2 rounded-lg text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors"
-                      >
-                        <TrashBinIcon className="w-4 h-4" />
-                      </button>
-                    )}
-                  </div>
-                  {errors.images?.[i]?.url && (
-                    <p className="text-xs text-red-500">{errors.images[i].url?.message}</p>
-                  )}
-                </div>
-              );
-            })}
+            {imageFields.map((field, i) => (
+              <div key={field.id} className="relative">
+                <ImageUpload
+                  value={watch(`images.${i}.url`)}
+                  onChange={(url) => setValue(`images.${i}.url`, url, { shouldValidate: true })}
+                  folder="deshio-admin/products"
+                  aspectRatio="wide"
+                />
+                {imageFields.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => removeImage(i)}
+                    className="absolute top-2 right-2 z-10 p-1.5 rounded-lg bg-red-500 text-white hover:bg-red-600 shadow transition-colors"
+                    title="Remove image"
+                  >
+                    <TrashBinIcon className="w-3.5 h-3.5" />
+                  </button>
+                )}
+              </div>
+            ))}
           </div>
 
           {/* Settings card */}
