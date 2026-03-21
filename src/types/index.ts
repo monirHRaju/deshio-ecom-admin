@@ -19,7 +19,7 @@ export interface Category {
   slug: string;
   description?: string;
   image?: string;
-  parent?: string | Category;
+  parentCategory?: string | Category;
   createdAt: string;
   updatedAt: string;
 }
