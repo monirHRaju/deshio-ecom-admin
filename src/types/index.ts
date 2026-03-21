@@ -54,43 +54,40 @@ export type OrderStatus =
   | "processing"
   | "shipped"
   | "delivered"
-  | "cancelled"
-  | "refunded";
+  | "cancelled";
 
-export type PaymentStatus = "pending" | "paid" | "failed" | "refunded";
+export type PaymentStatus = "pending" | "paid" | "failed";
 
 export interface OrderItem {
-  product: string | Product;
-  name: string;
+  productId: string | Product;
+  title: string;
   image: string;
   price: number;
   quantity: number;
 }
 
 export interface ShippingAddress {
-  fullName: string;
-  address: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  country: string;
-  phone: string;
+  street?: string;
+  city?: string;
+  country?: string;
+  zip?: string;
 }
 
 export interface Order {
   _id: string;
   orderNumber: string;
-  user: string | User;
+  userId: string | User;
   items: OrderItem[];
+  totalAmount: number;
   shippingAddress: ShippingAddress;
-  subtotal: number;
-  shippingFee: number;
-  discount: number;
-  total: number;
-  status: OrderStatus;
-  paymentStatus: PaymentStatus;
   paymentMethod: string;
+  paymentStatus: PaymentStatus;
+  orderStatus: OrderStatus;
   couponCode?: string;
+  couponDiscount: number;
+  deliveryCharge: number;
+  deliveryZoneId?: string;
+  orderNote?: string;
   createdAt: string;
   updatedAt: string;
 }
