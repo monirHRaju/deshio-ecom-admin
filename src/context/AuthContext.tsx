@@ -29,7 +29,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         .get<{ data: User }>("/users/me")
         .then((res) => {
           const user = res.data.data;
-          if (user.role === "admin") {
+          if (user.role === "admin" || user.role === "super-admin") {
             setAdmin(user);
           } else {
             // Not an admin — clear session
@@ -53,7 +53,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }>("/auth/login", { email, password });
     const { accessToken, user } = res.data.data;
 
-    if (user.role !== "admin") {
+    if (user.role !== "admin" && user.role !== "super-admin") {
       throw new Error("Access denied. Admin accounts only.");
     }
 

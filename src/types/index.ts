@@ -4,7 +4,7 @@ export interface User {
   _id: string;
   name: string;
   email: string;
-  role: "user" | "admin";
+  role: "user" | "admin" | "super-admin";
   avatar?: string;
   isVerified: boolean;
   createdAt: string;
@@ -54,27 +54,23 @@ export type OrderStatus =
   | "processing"
   | "shipped"
   | "delivered"
-  | "cancelled"
-  | "refunded";
+  | "cancelled";
 
-export type PaymentStatus = "pending" | "paid" | "failed" | "refunded";
+export type PaymentStatus = "pending" | "paid" | "failed";
 
 export interface OrderItem {
-  product: string | Product;
-  name: string;
+  productId: string | Product;
+  title: string;
   image: string;
   price: number;
   quantity: number;
 }
 
 export interface ShippingAddress {
-  fullName: string;
-  address: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  country: string;
-  phone: string;
+  street?: string;
+  city?: string;
+  country?: string;
+  zip?: string;
 }
 
 export interface Order {
@@ -82,15 +78,16 @@ export interface Order {
   orderNumber: string;
   userId: string | User;
   items: OrderItem[];
-  shippingAddress: ShippingAddress;
-  subtotal: number;
-  shippingFee: number;
-  discount: number;
   totalAmount: number;
-  orderStatus: OrderStatus;
-  paymentStatus: PaymentStatus;
+  shippingAddress: ShippingAddress;
   paymentMethod: string;
+  paymentStatus: PaymentStatus;
+  orderStatus: OrderStatus;
   couponCode?: string;
+  couponDiscount: number;
+  deliveryCharge: number;
+  deliveryZoneId?: string;
+  orderNote?: string;
   createdAt: string;
   updatedAt: string;
 }
