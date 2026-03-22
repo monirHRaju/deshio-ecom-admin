@@ -346,18 +346,20 @@ export default function OrdersPage() {
         </div>
         {/* search */}
         <div className="relative w-full sm:w-72">
-          <svg
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4"
-            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-          >
-            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-          </svg>
+          {/* {!search && (
+            <svg
+              className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+            >
+              <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+            </svg>
+          )} */}
           <input
             type="text"
             placeholder="Search order # or customer…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="input-field pl-9"
+            className={`input-field transition-all ${search ? "pl-3" : "pl-10"}`}
           />
         </div>
       </div>
