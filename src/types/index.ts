@@ -148,15 +148,31 @@ export interface DashboardStats {
   usersGrowth?: number;
 }
 
-export interface ChartDataPoint {
-  month: string;
-  revenue: number;
+export interface MonthlyDataPoint {
+  _id: { year: number; month: number };
   orders: number;
+  revenue: number;
+}
+
+export interface TopProduct {
+  _id: string;
+  title: string;
+  sold: number;
+  rating: number;
+  images: string[];
+}
+
+export interface TopCategory {
+  _id: string;
+  name: string;
+  count: number;
 }
 
 export interface DashboardChartData {
-  monthly: ChartDataPoint[];
-  ordersByStatus: { status: string; count: number }[];
+  monthlyData: MonthlyDataPoint[];
+  ordersByStatus: { _id: string; count: number }[];
+  topProducts: TopProduct[];
+  topCategories: TopCategory[];
 }
 
 // ─── API Response ────────────────────────────────────────────────────────────
