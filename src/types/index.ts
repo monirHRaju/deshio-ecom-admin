@@ -96,10 +96,11 @@ export interface Order {
 
 export interface Review {
   _id: string;
-  user: string | User;
-  product: string | Product;
+  userId: string | User;
+  productId: string | Product;
   rating: number;
   comment: string;
+  helpful: number;
   createdAt: string;
   updatedAt: string;
 }

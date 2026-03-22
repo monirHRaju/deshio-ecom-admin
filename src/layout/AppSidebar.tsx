@@ -55,6 +55,11 @@ const navItems: NavItem[] = [
     name: "Categories",
     path: "/categories",
   },
+  {
+    icon: <ListIcon />,
+    name: "Reviews",
+    path: "/reviews",
+  },
 ];
 
 // ─── Others navigation ────────────────────────────────────────────────────────

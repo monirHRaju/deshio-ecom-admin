@@ -294,18 +294,20 @@ export default function UsersPage() {
         <div className="flex items-center gap-3">
           {/* search */}
           <div className="relative w-64">
-            <svg
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-            >
-              <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-            </svg>
+            {/* {!search && (
+              <svg
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+              >
+                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+              </svg>
+            )} */}
             <input
               type="text"
               placeholder="Search name or email…"
               value={search}
               onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-              className="input-field pl-9"
+              className={`input-field transition-all ${search ? "pl-3" : "pl-10"}`}
             />
           </div>
           {/* add admin — super-admin only */}
