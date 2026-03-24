@@ -11,6 +11,7 @@ interface AuthContextValue {
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  updateAdmin: (user: User) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -62,6 +63,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setAdmin(user);
   }
 
+  function updateAdmin(user: User) {
+    setAdmin(user);
+  }
+
   function logout() {
     Cookies.remove("admin_token");
     setToken(null);
@@ -70,7 +75,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ admin, token, isLoading, login, logout }}>
+    <AuthContext.Provider value={{ admin, token, isLoading, login, logout, updateAdmin }}>
       {children}
     </AuthContext.Provider>
   );
