@@ -56,6 +56,11 @@ const navItems: NavItem[] = [
     path: "/categories",
   },
   {
+    icon: <PageIcon />,
+    name: "Payment Methods",
+    path: "/payment-methods",
+  },
+  {
     icon: <ListIcon />,
     name: "Reviews",
     path: "/reviews",

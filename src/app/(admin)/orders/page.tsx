@@ -213,6 +213,35 @@ function OrderDetailsModal({
             </div>
           )}
 
+          {/* Mobile payment details */}
+          {order.mobilePayment?.transactionId && (
+            <div className="rounded-xl border border-amber-200 dark:border-amber-800/50 bg-amber-50 dark:bg-amber-900/20 p-4 space-y-2">
+              <p className="text-xs font-medium text-amber-600 dark:text-amber-400 uppercase tracking-wider">
+                Mobile Payment Details
+              </p>
+              <div className="grid grid-cols-3 gap-3 text-sm">
+                <div>
+                  <p className="text-xs text-gray-400">Method</p>
+                  <p className="font-medium text-gray-800 dark:text-white/90">
+                    {order.mobilePayment.paymentMethodName || "Mobile Banking"}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400">Mobile (Last 4)</p>
+                  <p className="font-medium text-gray-800 dark:text-white/90 font-mono">
+                    ****{order.mobilePayment.mobileLast4}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400">TrxID</p>
+                  <p className="font-medium text-gray-800 dark:text-white/90 font-mono break-all">
+                    {order.mobilePayment.transactionId}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* status update */}
           <div className="rounded-xl border border-gray-100 dark:border-gray-800 p-4 space-y-3">
             <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">Update Status</p>
