@@ -82,6 +82,7 @@ export interface Order {
   items: OrderItem[];
   totalAmount: number;
   shippingAddress: ShippingAddress;
+  phone: string;
   paymentMethod: string;
   paymentStatus: PaymentStatus;
   orderStatus: OrderStatus;

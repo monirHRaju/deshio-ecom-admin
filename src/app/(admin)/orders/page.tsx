@@ -132,6 +132,7 @@ function OrderDetailsModal({
                     <p>{[order.shippingAddress.city, order.shippingAddress.zip].filter(Boolean).join(", ")}</p>
                   )}
                   {order.shippingAddress.country && <p>{order.shippingAddress.country}</p>}
+                  {order.phone && <p className="mt-1 font-medium">Phone: {order.phone}</p>}
                 </div>
               ) : (
                 <p className="text-sm text-gray-500">—</p>

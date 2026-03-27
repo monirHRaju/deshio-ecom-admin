@@ -84,9 +84,9 @@ const AppHeader: React.FC = () => {
           </button>
 
           {/* Mobile logo */}
-          <span className="lg:hidden font-bold text-brand-500 text-lg">
-            Deshio Admin
-          </span>
+          <Link href="/" className="lg:hidden">
+            <img src="/deshio_logo.svg" alt="Deshio Admin" className="h-8" />
+          </Link>
 
           <button
             onClick={toggleApplicationMenu}

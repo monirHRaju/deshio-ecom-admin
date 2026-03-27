@@ -259,15 +259,11 @@ const AppSidebar: React.FC = () => {
           !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
         }`}
       >
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center">
           {isExpanded || isHovered || isMobileOpen ? (
-            <span className="text-xl font-bold text-brand-500 tracking-tight">
-              Deshio <span className="text-gray-800 dark:text-white">Admin</span>
-            </span>
+            <img src="/deshio_logo.svg" alt="Deshio Admin" className="h-10" />
           ) : (
-            <span className="w-9 h-9 rounded-lg bg-brand-500 flex items-center justify-center text-white font-bold text-lg">
-              D
-            </span>
+            <img src="/deshio_logo.svg" alt="Deshio" className="h-9 w-9 rounded-lg object-cover" />
           )}
         </Link>
       </div>
