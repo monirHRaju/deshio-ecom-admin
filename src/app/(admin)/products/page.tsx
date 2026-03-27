@@ -194,11 +194,11 @@ export default function ProductsPage() {
                         {/* price */}
                         <TableCell className="py-3 px-4 whitespace-nowrap">
                           <span className="text-sm font-semibold text-gray-800 dark:text-white/90">
-                            ${finalPrice.toFixed(2)}
+                            ৳{finalPrice.toFixed(2)}
                           </span>
                           {p.discount > 0 && (
                             <span className="ml-1.5 text-xs text-gray-400 line-through">
-                              ${p.price.toFixed(2)}
+                              ৳{p.price.toFixed(2)}
                             </span>
                           )}
                         </TableCell>

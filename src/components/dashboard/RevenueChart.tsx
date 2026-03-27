@@ -70,13 +70,13 @@ export default function RevenueChart() {
     },
     yaxis: {
       labels: {
-        formatter: (v) => `$${(v / 1000).toFixed(0)}K`,
+        formatter: (v) => `৳${(v / 1000).toFixed(0)}K`,
         style: { colors: "#9CA3AF", fontSize: "12px" },
       },
     },
     grid: { borderColor: "#F3F4F6", strokeDashArray: 4 },
     tooltip: {
-      y: { formatter: (v) => `$${Number(v ?? 0).toLocaleString()}` },
+      y: { formatter: (v) => `৳${Number(v ?? 0).toLocaleString()}` },
     },
   };
 
