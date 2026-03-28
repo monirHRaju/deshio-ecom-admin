@@ -17,7 +17,7 @@ export const useNotifications = (params?: NotificationsParams) => {
       if (params?.page) query.set("page", String(params.page));
       if (params?.limit) query.set("limit", String(params.limit));
       if (params?.isRead !== undefined) query.set("isRead", String(params.isRead));
-      const res = await api.get(`/v1/notifications?${query.toString()}`);
+      const res = await api.get(`/notifications?${query.toString()}`);
       return res.data as {
         data: Notification[];
         meta: { page: number; limit: number; total: number; totalPages: number };
@@ -31,7 +31,7 @@ export const useUnreadCount = () => {
   return useQuery({
     queryKey: ["notifications", "unread-count"],
     queryFn: async () => {
-      const res = await api.get("/v1/notifications/unread-count");
+      const res = await api.get("/notifications/unread-count");
       return res.data.data as { count: number };
     },
     refetchInterval: 30000,
@@ -42,7 +42,7 @@ export const useMarkAsRead = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const res = await api.patch(`/v1/notifications/${id}/read`);
+      const res = await api.patch(`/notifications/${id}/read`);
       return res.data;
     },
     onSuccess: () => {
@@ -55,7 +55,7 @@ export const useMarkAllAsRead = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async () => {
-      const res = await api.patch("/v1/notifications/read-all");
+      const res = await api.patch("/notifications/read-all");
       return res.data;
     },
     onSuccess: () => {
@@ -68,7 +68,7 @@ export const useDeleteNotification = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const res = await api.delete(`/v1/notifications/${id}`);
+      const res = await api.delete(`/notifications/${id}`);
       return res.data;
     },
     onSuccess: () => {

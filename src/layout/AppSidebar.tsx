@@ -9,6 +9,7 @@ import {
   BoxCubeIcon,
   ChevronDownIcon,
   DocsIcon,
+  DollarLineIcon,
   FolderIcon,
   GridIcon,
   GroupIcon,
@@ -59,6 +60,11 @@ const navItems: NavItem[] = [
     icon: <PageIcon />,
     name: "Payment Methods",
     path: "/payment-methods",
+  },
+  {
+    icon: <DollarLineIcon />,
+    name: "Coupons",
+    path: "/coupons",
   },
   {
     icon: <ListIcon />,

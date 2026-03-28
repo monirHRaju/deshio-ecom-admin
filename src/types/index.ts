@@ -89,6 +89,7 @@ export interface Order {
   couponCode?: string;
   couponDiscount: number;
   deliveryCharge: number;
+  codProcessingFee?: number;
   deliveryZoneId?: string;
   orderNote?: string;
   mobilePayment?: {
@@ -131,16 +132,17 @@ export interface Review {
 
 // ─── Coupon ──────────────────────────────────────────────────────────────────
 
-export type CouponType = "percentage" | "fixed";
+export type CouponType = "percent" | "fixed";
 
 export interface Coupon {
   _id: string;
   code: string;
+  description?: string;
   type: CouponType;
   value: number;
-  minOrderAmount?: number;
-  maxUsage?: number;
-  usageCount: number;
+  minOrderAmount: number;
+  maxUses: number;
+  usedCount: number;
   expiresAt?: string;
   isActive: boolean;
   createdAt: string;
