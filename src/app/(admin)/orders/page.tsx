@@ -132,6 +132,7 @@ function OrderDetailsModal({
                     <p>{[order.shippingAddress.city, order.shippingAddress.zip].filter(Boolean).join(", ")}</p>
                   )}
                   {order.shippingAddress.country && <p>{order.shippingAddress.country}</p>}
+                  {order.phone && <p className="mt-1 font-medium">Phone: {order.phone}</p>}
                 </div>
               ) : (
                 <p className="text-sm text-gray-500">—</p>
@@ -172,8 +173,8 @@ function OrderDetailsModal({
                         </div>
                       </td>
                       <td className="px-4 py-2.5 text-center text-gray-600 dark:text-gray-400">{item.quantity}</td>
-                      <td className="px-4 py-2.5 text-right text-gray-600 dark:text-gray-400">${item.price.toFixed(2)}</td>
-                      <td className="px-4 py-2.5 text-right font-medium text-gray-800 dark:text-white">${(item.price * item.quantity).toFixed(2)}</td>
+                      <td className="px-4 py-2.5 text-right text-gray-600 dark:text-gray-400">৳{item.price.toFixed(2)}</td>
+                      <td className="px-4 py-2.5 text-right font-medium text-gray-800 dark:text-white">৳{(item.price * item.quantity).toFixed(2)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -191,18 +192,18 @@ function OrderDetailsModal({
             {order.deliveryCharge > 0 && (
               <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
                 <span>Delivery charge</span>
-                <span>${order.deliveryCharge.toFixed(2)}</span>
+                <span>৳{order.deliveryCharge.toFixed(2)}</span>
               </div>
             )}
             {order.couponDiscount > 0 && (
               <div className="flex justify-between text-sm text-green-600 dark:text-green-400">
                 <span>Coupon discount {order.couponCode && `(${order.couponCode})`}</span>
-                <span>-${order.couponDiscount.toFixed(2)}</span>
+                <span>-৳{order.couponDiscount.toFixed(2)}</span>
               </div>
             )}
             <div className="flex justify-between text-base font-semibold text-gray-800 dark:text-white pt-1.5 border-t border-gray-100 dark:border-gray-800">
               <span>Total</span>
-              <span>${order.totalAmount.toFixed(2)}</span>
+              <span>৳{order.totalAmount.toFixed(2)}</span>
             </div>
           </div>
 
@@ -469,7 +470,7 @@ export default function OrdersPage() {
                           {order.items.length}
                         </td>
                         <td className="px-4 py-3 text-right font-semibold text-gray-800 dark:text-white">
-                          ${order.totalAmount.toFixed(2)}
+                          ৳{order.totalAmount.toFixed(2)}
                         </td>
                         <td className="px-4 py-3 text-center">
                           <span

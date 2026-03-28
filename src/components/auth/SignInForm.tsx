@@ -28,10 +28,16 @@ export default function SignInForm() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(schema) as unknown as Resolver<FormValues>,
   });
+
+  function fillDemo(email: string, password: string) {
+    setValue("email", email);
+    setValue("password", password);
+  }
 
   async function onSubmit(data: FormValues) {
     try {
@@ -52,27 +58,8 @@ export default function SignInForm() {
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto px-6">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <span className="text-xl font-bold text-gray-800 dark:text-white">
-              Deshio Admin
-            </span>
+          <div className="mb-6">
+            <img src="/deshio_logo.svg" alt="Deshio Admin" className="h-12" />
           </div>
           <h1 className="text-2xl font-bold text-gray-800 dark:text-white/90 mb-1">
             Sign in to your account
@@ -164,10 +151,41 @@ export default function SignInForm() {
           </Button>
         </form>
 
+        {/* Demo login buttons */}
+        <div className="mt-5 space-y-2.5">
+          <p className="text-xs text-center text-gray-400 dark:text-gray-500">Quick demo login</p>
+          <div className="grid grid-cols-2 gap-3 justify-center">
+            <button
+              type="button"
+              onClick={() => fillDemo("admin@example.com", "123456")}
+              className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              Admin
+            </button>
+            
+          </div>
+        </div>
+
         {/* Footer note */}
-        <p className="mt-8 text-xs text-center text-gray-400 dark:text-gray-600">
-          This panel is restricted to administrators only.
-        </p>
+        <div className="mt-8 text-center space-y-2">
+          <p className="text-xs text-gray-400 dark:text-gray-600">
+            This panel is restricted to administrators only.
+          </p>
+          {process.env.NEXT_PUBLIC_HOMEPAGE_URL && (
+            <a
+              href={process.env.NEXT_PUBLIC_HOMEPAGE_URL}
+              className="inline-flex items-center gap-1.5 text-sm text-brand-500 hover:text-brand-600 transition-colors"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+              Back to Homepage
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );

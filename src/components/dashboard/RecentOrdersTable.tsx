@@ -145,7 +145,7 @@ export default function RecentOrdersTable() {
                       {/* amount */}
                       <TableCell className="py-3">
                         <span className="text-sm font-semibold text-gray-800 dark:text-white/90">
-                          ${order.totalAmount.toFixed(2)}
+                          ৳{order.totalAmount.toFixed(2)}
                         </span>
                       </TableCell>
 

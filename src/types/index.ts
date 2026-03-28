@@ -82,12 +82,14 @@ export interface Order {
   items: OrderItem[];
   totalAmount: number;
   shippingAddress: ShippingAddress;
+  phone: string;
   paymentMethod: string;
   paymentStatus: PaymentStatus;
   orderStatus: OrderStatus;
   couponCode?: string;
   couponDiscount: number;
   deliveryCharge: number;
+  codProcessingFee?: number;
   deliveryZoneId?: string;
   orderNote?: string;
   mobilePayment?: {
@@ -130,16 +132,17 @@ export interface Review {
 
 // ─── Coupon ──────────────────────────────────────────────────────────────────
 
-export type CouponType = "percentage" | "fixed";
+export type CouponType = "percent" | "fixed";
 
 export interface Coupon {
   _id: string;
   code: string;
+  description?: string;
   type: CouponType;
   value: number;
-  minOrderAmount?: number;
-  maxUsage?: number;
-  usageCount: number;
+  minOrderAmount: number;
+  maxUses: number;
+  usedCount: number;
   expiresAt?: string;
   isActive: boolean;
   createdAt: string;
@@ -197,6 +200,22 @@ export interface DashboardChartData {
   ordersByStatus: { _id: string; count: number }[];
   topProducts: TopProduct[];
   topCategories: TopCategory[];
+}
+
+// ─── Notification ───────────────────────────────────────────────────────────
+
+export type NotificationType = 'order' | 'product' | 'payment' | 'user' | 'review' | 'system';
+
+export interface Notification {
+  _id: string;
+  type: NotificationType;
+  title: string;
+  message: string;
+  referenceId?: string;
+  referenceModel?: 'Order' | 'Product' | 'User' | 'Review';
+  isRead: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 // ─── API Response ────────────────────────────────────────────────────────────

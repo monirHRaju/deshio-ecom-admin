@@ -21,27 +21,8 @@ export default function AuthLayout({
             <div className="relative items-center justify-center flex z-1">
               <GridShape />
               <div className="flex flex-col items-center max-w-xs text-center">
-                {/* Logo mark */}
-                <div className="w-16 h-16 rounded-2xl bg-brand-500 flex items-center justify-center mb-6 shadow-lg">
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-                <h2 className="text-2xl font-bold text-white mb-3">
-                  Deshio Admin
-                </h2>
+                {/* Logo */}
+                <img src="/deshio_logo.svg" alt="Deshio Admin" className="h-20 mb-6" />
                 <p className="text-gray-400 dark:text-white/60 text-sm leading-relaxed">
                   Manage your products, orders, customers, and analytics — all
                   in one powerful dashboard.

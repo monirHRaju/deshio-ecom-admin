@@ -187,7 +187,7 @@ export default function ProductForm({ defaultValues, onSubmit, submitLabel }: Pr
             <div className="grid grid-cols-3 gap-4">
               <div>
                 <label className="block mb-1.5 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Price ($) <span className="text-red-500">*</span>
+                  Price (৳) <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="number"
@@ -384,11 +384,11 @@ export default function ProductForm({ defaultValues, onSubmit, submitLabel }: Pr
                 <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">Price Preview</p>
                 <div className="flex items-baseline gap-2">
                   <span className="text-lg font-bold text-gray-800 dark:text-white">
-                    ${(watch("price") * (1 - (watch("discount") ?? 0) / 100)).toFixed(2)}
+                    ৳{(watch("price") * (1 - (watch("discount") ?? 0) / 100)).toFixed(2)}
                   </span>
                   {(watch("discount") ?? 0) > 0 && (
                     <>
-                      <span className="text-sm text-gray-400 line-through">${watch("price").toFixed(2)}</span>
+                      <span className="text-sm text-gray-400 line-through">৳{watch("price").toFixed(2)}</span>
                       <span className="text-xs font-semibold text-green-600 bg-green-50 dark:bg-green-500/10 dark:text-green-400 px-1.5 py-0.5 rounded">
                         -{watch("discount")}%
                       </span>

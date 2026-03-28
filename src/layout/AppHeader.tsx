@@ -84,9 +84,9 @@ const AppHeader: React.FC = () => {
           </button>
 
           {/* Mobile logo */}
-          <span className="lg:hidden font-bold text-brand-500 text-lg">
-            Deshio Admin
-          </span>
+          <Link href="/" className="lg:hidden">
+            <img src="/deshio_logo.svg" alt="Deshio Admin" className="h-8" />
+          </Link>
 
           <button
             onClick={toggleApplicationMenu}
@@ -151,7 +151,7 @@ const AppHeader: React.FC = () => {
           <div className="flex items-center gap-2 2xsm:gap-3">
             {/* View storefront */}
             <a
-              href="http://localhost:3000"
+              href={process.env.NEXT_PUBLIC_HOMEPAGE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
