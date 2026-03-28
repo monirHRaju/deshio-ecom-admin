@@ -200,6 +200,22 @@ export interface DashboardChartData {
   topCategories: TopCategory[];
 }
 
+// ─── Notification ───────────────────────────────────────────────────────────
+
+export type NotificationType = 'order' | 'product' | 'payment' | 'user' | 'review' | 'system';
+
+export interface Notification {
+  _id: string;
+  type: NotificationType;
+  title: string;
+  message: string;
+  referenceId?: string;
+  referenceModel?: 'Order' | 'Product' | 'User' | 'Review';
+  isRead: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // ─── API Response ────────────────────────────────────────────────────────────
 
 export interface PaginatedResponse<T> {
